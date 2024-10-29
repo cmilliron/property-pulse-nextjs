@@ -2,7 +2,8 @@ import "@/assets/styles/globals.css";
 
 export const metadata = {
   title: "PropertyPulse",
-  description: "Find The Pefect Rental Property",
+  description: "Find the Pefect Rental Property",
+  keyword: "rental, rent, property",
 };
 
 function MainLayout({ children }) {
