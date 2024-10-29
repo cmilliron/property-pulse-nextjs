@@ -1,5 +1,10 @@
-function PrpertyDetails() {
-  return <div>PrpertyDetails</div>;
+async function PropertyDetails({ params }) {
+  const { id } = await params;
+  return (
+    <div>
+      <h1>Propoerty Details {id}</h1>
+    </div>
+  );
 }
 
-export default PrpertyDetails;
+export default PropertyDetails;
