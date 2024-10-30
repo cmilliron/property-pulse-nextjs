@@ -1,9 +1,12 @@
 import Link from "next/link";
+import Hero from "@/components/Hero";
+
 function HomePage() {
-  return;
-  <>
-    <div className="text-2xl">Home Page</div>;
-  </>;
+  return (
+    <>
+      <Hero />
+    </>
+  );
 }
 
 export default HomePage;
