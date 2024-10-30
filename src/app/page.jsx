@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
+import InfoBoxes from "@/components/InfoBoxes";
 
 function HomePage() {
   return (
     <>
       <Hero />
+      <InfoBoxes />
     </>
   );
 }
