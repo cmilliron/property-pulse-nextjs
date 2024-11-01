@@ -13,7 +13,7 @@ function HomePage() {
   const recentProperties = properties
     .sort(() => Math.random() - Math.random())
     .slice(0, 3);
-
+  console.log(process.env.MONGO_DB_URI);
   return (
     <>
       <Hero />
