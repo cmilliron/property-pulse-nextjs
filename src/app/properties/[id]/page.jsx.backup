@@ -1,0 +1,36 @@
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { fetchPropertyById } from "@/utils/ requests";
+
+async function PropertyPage({ params }) {
+  const { id } = await params;
+
+  const [property, setProperty] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPropertyData = async () => {
+      if (!id) return;
+      try {
+        const propertyFromDatabase = await fetchPropertyById(id);
+        setProperty(propertyFromDatabase);
+      } catch (error) {
+        console.error("Error fetching property data: ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (property === null) {
+      fetchPropertyData();
+    }
+  }, [id, property]);
+
+  return (
+    <div>
+      <h1>Propoerty Details {id}</h1>
+    </div>
+  );
+}
+
+export default PropertyDetails;

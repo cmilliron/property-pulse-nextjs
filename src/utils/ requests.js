@@ -17,4 +17,21 @@ async function fetchProperties() {
   }
 }
 
-export { fetchProperties };
+async function fetchPropertyById(id) {
+  try {
+    if (!apiDomain) return null;
+
+    const res = await fetch(`${apiDomain}/properties/${id}`);
+
+    if (!res.ok) {
+      throw new Error("Faild to fetch data");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("Error Feetching peroperty:", error);
+    return null;
+  }
+}
+
+export { fetchProperties, fetchPropertyById };

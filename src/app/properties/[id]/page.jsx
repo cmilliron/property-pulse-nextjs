@@ -1,10 +1,17 @@
-async function PropertyDetails({ params }) {
-  const { id } = await params;
-  return (
-    <div>
-      <h1>Propoerty Details {id}</h1>
-    </div>
-  );
-}
+import connectDb from "@/config/database";
+import Property from "@/models/PropetySchema";
+import PropertyHeaderImage from "@/components/PropertyHeaderImage";
 
-export default PropertyDetails;
+const PropertyPage = async ({ params }) => {
+  await connectDb();
+  const property = await Property.findById(await params.id).lean();
+
+  return (
+    <>
+      <PropertyHeaderImage image={property.images[0]} />
+      <section>{property.name}</section>
+    </>
+  );
+};
+
+export default PropertyPage;
