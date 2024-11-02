@@ -1,11 +1,13 @@
 // import properties from "@/properties.json";
 import PropertyCard from "@/components/PropertyCard";
-import { fetchProperties } from "@/utils/ requests";
+import connectDb from "@/config/database";
+import Property from "@/models/PropetySchema";
 
 async function ProperitiesPage() {
-  const properties = await fetchProperties();
-  console.log("** in PropertiesPage funcation after call **");
-  console.log(properties);
+  // const properties = await fetchProperties();
+  await connectDb();
+  const properties = await Property.find({}).lean();
+  console.log(`Returned ${properties.length} properties`);
   properties.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   return (
     <section className="px-4 py-6">
