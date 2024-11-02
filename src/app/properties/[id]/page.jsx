@@ -16,8 +16,6 @@ const PropertyPage = async ({ params }) => {
   return (
     <>
       <PropertyHeaderImage image={property.images[0]} />
-
-      {/* Go Back  */}
       <BackLink linkDestination="properties" />
 
       <section className="bg-blue-50">
