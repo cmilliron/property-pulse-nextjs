@@ -6,10 +6,10 @@ import InfoBoxes from "@/components/InfoBoxes";
 import Footer from "@/components/Footer";
 import PropertyCard from "@/components/PropertyCard";
 
-// data imports
-import properties from "@/properties.json";
+import { fetchProperties } from "@/utils/ requests";
 
-function HomePage() {
+async function HomePage() {
+  const properties = await fetchProperties();
   const recentProperties = properties
     .sort(() => Math.random() - Math.random())
     .slice(0, 3);

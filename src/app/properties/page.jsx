@@ -1,22 +1,6 @@
 // import properties from "@/properties.json";
 import PropertyCard from "@/components/PropertyCard";
-
-async function fetchProperties() {
-  try {
-    const res = await fetch("http://localhost:3000/api/properties", {
-      cache: "no-store",
-    });
-    console.log(res);
-    if (!res.ok) {
-      throw new Error("Failed to fect data");
-    }
-    console.log("** in fetchProperties **");
-    // console.log(await res.json());
-    return await res.json();
-  } catch (error) {
-    console.log(error);
-  }
-}
+import { fetchProperties } from "@/utils/ requests";
 
 async function ProperitiesPage() {
   const properties = await fetchProperties();
