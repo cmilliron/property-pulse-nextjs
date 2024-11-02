@@ -40,7 +40,7 @@ const PropertySchema = new Schema(
       type: Number,
       required: true,
     },
-    amenities: [{ type: Sting }],
+    amenities: [{ type: String }],
     rates: {
       nightly: Number,
       weekly: Number,
