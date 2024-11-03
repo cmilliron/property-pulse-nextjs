@@ -5,10 +5,11 @@ import PropertyCard from "./PropertyCard";
 
 async function HomeProperties() {
   await connectDb();
-  const properties = await Property.find({}).lean();
-  const recentProperties = properties
-    .sort(() => Math.random() - Math.random())
-    .slice(0, 3);
+  const recentProperties = await Property.find({})
+    .sort({ createdAt: -1 })
+    .limit(3)
+    .lean();
+
   return (
     <>
       <section className="px-4 py-6">
