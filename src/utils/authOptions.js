@@ -10,7 +10,7 @@ export const authOptions = {
       authorization: {
         params: {
           prompt: "consent",
-          access_types: "offline",
+          access_type: "offline",
           response_type: "code",
         },
       },
@@ -31,8 +31,8 @@ export const authOptions = {
           username,
           image: profile.picture,
         });
-        return true;
       }
+      return true;
     },
     // Session callback funcation that momdifies the session object
     async session({ session }) {
