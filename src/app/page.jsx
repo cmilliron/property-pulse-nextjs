@@ -4,10 +4,7 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import InfoBoxes from "@/components/InfoBoxes";
 import Footer from "@/components/Footer";
-import PropertyCard from "@/components/PropertyCard";
 import HomeProperties from "@/components/HomeProperties";
-
-import { fetchProperties } from "@/utils/ requests";
 
 async function HomePage() {
   return (
