@@ -12,7 +12,7 @@ function PropertySearchForm() {
   console.log(location === "");
   console.log(propertyType === "All");
 
-  const handleSubmit = (e) => 
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (location === "" && propertyType === "All") {
       router.push("/properties");
