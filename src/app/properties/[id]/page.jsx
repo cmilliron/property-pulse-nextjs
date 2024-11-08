@@ -4,10 +4,14 @@ import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import { convertToSerializableObject } from "@/utils/convertToObject";
 
+// Components
 import PropertyHeaderImage from "@/components/PropertyHeaderImage";
 import PropertyDetails from "@/components/PropertyDetails";
 import PropertyImages from "@/components/PropertyImages";
 import BackLink from "@/components/BackLink";
+import BookmarkButton from "@/components/BookmarkButton";
+import ShareButtons from "@/components/ShareButtons";
+import PropertyContactForm from "@/components/PropertyContactForm";
 
 const PropertyPage = async ({ params }) => {
   const { id: propertId } = await params;
@@ -32,6 +36,11 @@ const PropertyPage = async ({ params }) => {
         <div className="container m-auto py-10 px-6">
           <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
             <PropertyDetails property={property} />
+            <aside className="spac-y-4">
+              <BookmarkButton />
+              <ShareButtons />
+              <PropertyContactForm />
+            </aside>
           </div>
         </div>
       </section>
