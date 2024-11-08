@@ -12,7 +12,6 @@ async function HomePage() {
       <Hero />
       <InfoBoxes />
       <HomeProperties />
-      <Footer />
     </>
   );
 }
