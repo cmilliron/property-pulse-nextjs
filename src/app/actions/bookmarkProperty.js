@@ -18,16 +18,16 @@ async function bookmarkProperty(propertyId) {
 
   const user = await User.findById(userId);
 
-  const isBookmarked = user.bookmarks.includes(propertyId);
+  let isBookmarked = user.bookmarks.includes(propertyId);
 
   let message;
 
   if (isBookmarked) {
-    user.booksmarks.pull(propertyId);
+    user.bookmarks.pull(propertyId);
     message = "Bookmark Removed";
     isBookmarked = false;
   } else {
-    user.booksmarks.push(propertyId);
+    user.bookmarks.push(propertyId);
     message = "Bookmark Added";
     isBookmarked = true;
   }
