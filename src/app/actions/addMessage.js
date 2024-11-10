@@ -6,12 +6,12 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import cloudinary from "@/config/cloudinary";
 
-async function addMessages(formData) {
+async function addMessage(previousState, formData) {
   await connectDb();
 
   const sessionUser = await getSessionUser();
   const { userId } = sessionUser;
-  const recipient = formData.get(recipient);
+  const recipient = formData.get("recipient");
 
   if (!sessionUser || !sessionUser.userId) {
     throw new Error("User ID is required");
@@ -30,10 +30,10 @@ async function addMessages(formData) {
     phone: formData.get("phone"),
     body: formData.get("body"),
   });
-
-  newMessage.save();
+  console.log(newMessage);
+  await newMessage.save();
 
   return { submitted: true };
 }
 
-export default addMessages;
+export default addMessage;
