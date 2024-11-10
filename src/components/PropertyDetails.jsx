@@ -90,10 +90,6 @@ const PropertyDetails = ({ property }) => {
           })}
         </ul>
       </div>
-
-      {/* <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-        <PropertyMaps property={property} />
-      </div> */}
     </main>
   );
 };
