@@ -4,14 +4,17 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import markMessageAsRead from "@/app/actions/markMessageAsRead";
 import deleteMessage from "@/app/actions/deleteMessage";
+import { useGlobalContext } from "@/app/context/GlobalContext";
 
 function MessageCard({ message }) {
   const [isRead, setIsRead] = useState(message.read);
   const [isDeleted, setIsDeleted] = useState(false);
+  const { setUnreadCount } = useGlobalContext();
 
   const handleReadClick = async () => {
     const readStatus = await markMessageAsRead(message._id);
     setIsRead(readStatus);
+    setUnreadCount((prevCount) => (!isRead ? prevCount - 1 : prevCount + 1));
     toast.info(`Message mark as ${readStatus ? "read" : "unread"}`);
   };
 
@@ -20,6 +23,7 @@ function MessageCard({ message }) {
     setIsDeleted(deleteMessageResponse);
     if (deleteMessageResponse) {
       toast.success("Message Deleted");
+      if (!isRead) setUnreadCount((prevCount) => prevCount - 1);
     } else {
       toast.error("There was a problem deleting your message");
     }
