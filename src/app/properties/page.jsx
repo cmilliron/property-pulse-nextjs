@@ -3,12 +3,16 @@ import PropertyCard from "@/components/PropertyCard";
 import connectDb from "@/config/database";
 import Property from "@/models/PropetySchema";
 
-async function ProperitiesPage() {
+async function ProperitiesPage({ searchParams: { page = 1, pageSize = 3 } }) {
   // const properties = await fetchProperties();
   await connectDb();
-  const properties = await Property.find({}).lean();
+  const skip = (page - 1) * pageSize;
+  const total = await Property.countDocuments({});
+  const properties = await Property.find({}).skip(skip).limit(pageSize).lean();
   console.log(`Returned ${properties.length} properties`);
+
   properties.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
   return (
     <section className="px-4 py-6">
       <div className="container-xl lg:container m-auto px-4 py-6">
