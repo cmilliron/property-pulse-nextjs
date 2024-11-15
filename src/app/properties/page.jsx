@@ -2,8 +2,9 @@
 import PropertyCard from "@/components/PropertyCard";
 import connectDb from "@/config/database";
 import Property from "@/models/PropetySchema";
+import Pagination from "@/components/Pagination";
 
-async function ProperitiesPage({ searchParams: { page = 1, pageSize = 3 } }) {
+async function ProperitiesPage({ searchParams: { page = 1, pageSize = 9 } }) {
   // const properties = await fetchProperties();
   await connectDb();
   const skip = (page - 1) * pageSize;
@@ -12,6 +13,8 @@ async function ProperitiesPage({ searchParams: { page = 1, pageSize = 3 } }) {
   console.log(`Returned ${properties.length} properties`);
 
   properties.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  const showPagination = total > pageSize;
 
   return (
     <section className="px-4 py-6">
@@ -24,6 +27,13 @@ async function ProperitiesPage({ searchParams: { page = 1, pageSize = 3 } }) {
               <PropertyCard property={property} key={property._id} />
             ))}
           </div>
+        )}
+        {showPagination && (
+          <Pagination
+            currentPage={parseInt(page)}
+            pageSize={parseInt(pageSize)}
+            totalItems={total}
+          />
         )}
       </div>
     </section>
